@@ -5,8 +5,8 @@ def main():
     st.title('Simple Scatter Plot App')
     
     # Get user inputs
-    x = st.number_input('Enter X coordinate:', value=0.0)
-    y = st.number_input('Enter Y coordinate:', value=0.0)
+    x = st.number_input('Enter X coordinate:', value=0)
+    y = st.number_input('Enter Y coordinate:', value=0)
     
     # Display the input values
     st.write('Entered Coordinates:', (x, y))
