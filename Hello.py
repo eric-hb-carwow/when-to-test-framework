@@ -143,7 +143,7 @@ def main():
     # When to test
     First calculate your confidence, next calculate your risk, then see where you end up on the board. 
 
-    If you are in Essential, then let's build an AB test! If you're in optional or encouraged, the decision frameowrk is in this notion doc to discuss with stakeholders and analytics.
+    If you are in Essential, then let's build an AB test! If you're in optional or encouraged, the decision framework is in this notion doc to discuss with stakeholders and analytics.
     """)
 
     left_column, _, right_column = st.columns([1, 0.2, 1])
