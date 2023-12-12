@@ -1,5 +1,3 @@
-# TODO: change size explanation
-
 import streamlit as st
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
@@ -133,6 +131,8 @@ def get_risk():
     st.caption('To find revenue, see [this](https://10ay.online.tableau.com/#/site/carwowtest/views/MarketingDailyDashboard2_0/MarketingBusinessHealthDashboard) tableau dashboard')
     
     change_size = st.slider('How large is the change?', min_value=0, max_value=100)
+    st.caption('Suggestion:  XS 5 | S 20 | M 50 | L 90 | XL 100')
+    
     if monthly_revenue == 0:
         return {'opportunity': 0, 
                 'revenue': 0, 
@@ -157,6 +157,10 @@ def main():
         To calculate your confidence, sum up your evidence. Choose the type of evidence you have and how aligned it is with your hypothesis. Once you've input those, press "Add" and your confidence score will go up.
         """)
         confidence = get_confidence()
+        if confidence <= 0:
+            confidence = 0.01
+        if confidence >= conf_max:
+            confidence = conf_max - 0.01
     with right_column:
         st.write("""
         # Risk
@@ -164,7 +168,7 @@ def main():
 
         Next, find the monthly revenue for your country and vertical, if the change will be in DE leasing, for example, you would use overall DE GYC revenue for the last month. This can be found in this tableau dashbaord, ask your local analyst for help if needed.
 
-        Finally, input the change size. For guidance, a small change would be 10%, medium 50%, large 100%, but worth discussing with stakeholders and analytics to figure out a reasonable level. Some examples are in the notion doc here.
+        Finally, input the change size.
         """)
          
         risk_values = get_risk()
@@ -172,7 +176,10 @@ def main():
             risk = 0
         else:
             risk = risk_values['opportunity'] / risk_values['revenue'] * risk_values['change_size']
-    
+        if risk >= risk_max:
+            risk = risk_max - .01
+        if risk <= 0:
+            risk = 0 + .01
     outcome = make_plot(risk, confidence)
     
     left_column2, _, right_column2 = st.columns([1, 0.2, 1])
