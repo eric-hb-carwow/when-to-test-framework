@@ -180,7 +180,7 @@ def main():
             risk = risk_max - .01
         if risk <= 0:
             risk = 0 + .01
-    outcome = make_plot(risk, confidence)
+    st.write(' ')
     
     left_column2, _, right_column2 = st.columns([1, 0.2, 1])
     with left_column2:
@@ -222,6 +222,11 @@ def main():
         st.write(f'Opportunity: {risk_values["opportunity"]}')
         st.write(f'Monthly revenue: {risk_values["revenue"]}')
         st.write(f'Change size: {risk_values["change_size"]}')
+    
+    st.write(' ')
+    _, graph, _ = st.columns([.2, 1, .5])
+    with graph:
+        outcome = make_plot(risk, confidence)
     st.markdown(f'# AB testing is <span style="color: {colours[outcome]};">{outcome}</span>', unsafe_allow_html=True)
 
     if outcome != 'Essential':
