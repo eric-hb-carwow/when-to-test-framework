@@ -1,3 +1,5 @@
+# TODO: change size explanation
+
 import streamlit as st
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
@@ -117,10 +119,12 @@ def get_confidence():
     if st.button('Add'):
         numeric_value = points_minus_age
         final_value = numeric_value * (amount) / 100
-        st.session_state.selections.append((type, final_value, numeric_value))
+        st.session_state.selections.append((type, final_value, amount))
     total_confidence = 0
-    for idx, (type_name, final_value, numeric_value) in enumerate(st.session_state.selections, start=1):
+    
+    for idx, (type_name, final_value, amount) in enumerate(st.session_state.selections, start=1):
         total_confidence += final_value
+        
     return total_confidence
 
 def get_risk():
@@ -184,12 +188,18 @@ def main():
         st.write(f'## Confidence: {conf_cat}')
         if not bool(st.session_state.selections):
             st.write('None')
-        for (type_name, final_value, numeric_value) in st.session_state.selections:
-            if numeric_value < -50:
-                alignment = 'opposes'
-            elif numeric_value < 50:
-                alignment = 'mostly'
-                st.write(f"{type_name} {alignment} our hypothesis")
+        for (type_name, final_value, amount) in st.session_state.selections:
+            if amount < -50:
+                alignment = 'opposed to'
+            elif amount < -10:
+                alignment = 'slightly opposed to'
+            elif amount < 50:
+                alignment = 'neutral to'
+            elif amount < 80:
+                alignment = 'mostly aligns with'
+            else:
+                alignment = 'highly aligned with'
+            st.write(f"{type_name} {alignment} our hypothesis")
     
     with right_column2:
         if risk < risk_low:
