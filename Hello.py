@@ -200,7 +200,7 @@ def main():
                 alignment = 'opposed to'
             elif amount < -10:
                 alignment = 'slightly opposed to'
-            elif amount < 50:
+            elif amount < 30:
                 alignment = 'neutral to'
             elif amount < 80:
                 alignment = 'mostly aligns with'
