@@ -83,6 +83,14 @@ def make_plot(x, y):
     plt.axhline(y=conf_mid, color='#f4f2f7', linestyle='--')
     plt.axhline(y=conf_high, color='#f4f2f7', linestyle='--')
 
+    legend_handles = [
+            patches.Patch(color=colours['Optional'], label='Optional'),
+            patches.Patch(color=colours['Encouraged'], label='Encouraged'),
+            patches.Patch(color=colours['Essential'], label='Essential')
+        ]
+    plt.legend(handles=legend_handles, loc='upper center', bbox_to_anchor=(0.5, 1.15), ncol=3,
+               facecolor='none', edgecolor='none')
+
 
 
     plt.scatter(x, y, color='red', marker='o', s=200)
@@ -200,7 +208,7 @@ def main():
                 alignment = 'opposed to'
             elif amount < -10:
                 alignment = 'slightly opposed to'
-            elif amount < 30:
+            elif amount < 50:
                 alignment = 'neutral to'
             elif amount < 80:
                 alignment = 'mostly aligns with'
@@ -231,7 +239,7 @@ def main():
 
     if outcome != 'Essential':
         st.write('Please check the boxes below that are relevant for your change')
-        option_1 = st.checkbox('Would a result change a decision?')
+        option_1 = st.checkbox('Would a positive or negative result change a decision?')
         option_2 = st.checkbox('Will anyone want to know the impact?')
         option_3 = st.checkbox('Will learnings provide future value or influence future work?')
         option_4 = st.checkbox('Do we want to have accurate measurement?')
