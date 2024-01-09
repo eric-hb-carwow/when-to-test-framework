@@ -136,11 +136,23 @@ def make_plot(x, y):
 
     return (plt, outcome)
 
-def get_confidence():
+def get_alignment(amount):
+    if amount < -50:
+        alignment = 'opposed to'
+    elif amount < -10:
+        alignment = 'slightly opposed to'
+    elif amount < 50:
+        alignment = 'neutral to'
+    elif amount < 80:
+        alignment = 'mostly aligns with'
+    else:
+        alignment = 'highly aligned with'
+    return alignment
 
+def get_confidence():
     type = st.radio('Type of evidence:', evidence_type)
     amount = st.slider('How aligned with the hypothesis is this evidence?',min_value=-100, max_value=100, value=100, step=20)
-    st.caption('If the evidence fully supports your hypothesis, give it a 100, if it shows some support but there are questions, use 50. If it goes against your hypothesis, use negative numbers.')
+    st.caption(f'Evidence is **{get_alignment(amount)}** our hypothesis')
     age = st.slider('How many years ago is this evidence from?', min_value=0, max_value=6, step=1, value=0)
     st.caption('Older evidence gets fewer points')
     if age > 1:
@@ -189,19 +201,6 @@ def get_risk():
                 'opportunity': opp_size, 
                 'revenue': monthly_revenue, 
                 'change_size': change_size}
-
-def get_alignment(amount):
-    if amount < -50:
-        alignment = 'opposed to'
-    elif amount < -10:
-        alignment = 'slightly opposed to'
-    elif amount < 50:
-        alignment = 'neutral to'
-    elif amount < 80:
-        alignment = 'mostly aligns with'
-    else:
-        alignment = 'highly aligned with'
-    return alignment
 
 def show_checkboxes():
     st.markdown('#### Tick relevant boxes below')
@@ -300,11 +299,6 @@ def main():
         st.markdown(f'### AB testing is <span style="color: {colours[outcome]};">{outcome}</span>', unsafe_allow_html=True)
         st.pyplot(plt)
         show_outcome(outcome)
-    
-    
-
-        
-        
 
 if __name__ == '__main__':
     main()
