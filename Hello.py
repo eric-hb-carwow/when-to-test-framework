@@ -248,21 +248,21 @@ def show_risk(risk_values):
 
 def show_outcome(outcome):
     if outcome == 'Essential':
-        st.write('## AB test!')
+        return 'AB test!'
 
     elif outcome == 'Encouraged':
         if st.session_state.checks > 0:
-            st.write('## AB test!')
+            return 'AB test!'
         else: 
-            st.write('## Measure but no AB test')
+            return 'Measure but no AB test'
     
     else:
         if st.session_state.checks > 3:
-            st.write('## AB test!')
+            return 'AB test!'
         elif st.session_state.checks > 1:
-            st.write('## Measure but no AB test')
+            return 'Measure but no AB test'
         else:
-            st.write('## Roll it out!')
+            return 'Roll it out!'
 
 def main():
     st.write(main_description)
