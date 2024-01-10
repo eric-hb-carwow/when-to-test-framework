@@ -296,7 +296,9 @@ def main():
         show_checkboxes()
 
     with graph:
-        st.markdown(f'### AB testing is <span style="color: {colours[outcome]};">{outcome}</span> → <ins>{show_outcome(outcome)}</ins>', unsafe_allow_html=True)
+        st.markdown(f'### AB testing is <span style="color: {colours[outcome]};">{outcome}</span>', unsafe_allow_html=True)
+        st.markdown(f'### → <ins>{show_outcome(outcome)}</ins>', unsafe_allow_html=True)
+        st.write(' ')
         st.pyplot(plt)
 
 if __name__ == '__main__':
