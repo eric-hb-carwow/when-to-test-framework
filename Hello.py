@@ -180,7 +180,7 @@ def get_confidence():
 def get_risk():
     opp_size = st.number_input('Enter the opportunity size: (monthly traffic * conversion rate to revenue * average revenue)')
     monthly_revenue = st.number_input('Enter the country & vertical monthly revenue')
-    st.caption('To find revenue, see [this](https://10ay.online.tableau.com/#/site/carwowtest/views/MarketingDailyDashboard2_0/MarketingBusinessHealthDashboard) tableau dashboard')
+    st.caption('To find revenue, see [this](https://10ay.online.tableau.com/#/site/carwowtest/views/RevenueWeeklyandmonthly/Revenue?:iid=1) tableau dashboard')
     
     change_size = st.slider('How large is the change?', min_value=0, max_value=100, step=5)
     st.caption('Suggestion:  XS 5 | S 20 | M 50 | L 90 | XL 100')
