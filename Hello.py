@@ -53,7 +53,7 @@ main_description = """
 # When to test
 First calculate your confidence, next calculate your risk, then see where you end up on the board. 
 
-If you are in Essential, then let's build an AB test! If you're in optional or encouraged, the decision framework is in this notion doc to discuss with stakeholders and analytics.
+If you are in Essential, then let's build an AB test! If you're in optional or encouraged, the decision framework is at the bottom to discuss with stakeholders and analytics.
 """
 conf_description = """
 # Confidence
